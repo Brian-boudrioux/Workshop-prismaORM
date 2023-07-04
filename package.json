@@ -1,0 +1,32 @@
+{
+  "name": "workshop-prismaorm",
+  "version": "1.0.0",
+  "description": "### Install dependencies Install the dependencies project with the command:",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "migrate": "node migrate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brian-boudrioux/Workshop-prismaORM.git"
+  },
+  "author": "brian boudrioux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Brian-boudrioux/Workshop-prismaORM/issues"
+  },
+  "homepage": "https://github.com/Brian-boudrioux/Workshop-prismaORM#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "joi": "^17.9.2",
+    "mysql2": "^3.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
