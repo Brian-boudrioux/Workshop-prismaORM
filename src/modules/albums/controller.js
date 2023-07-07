@@ -1,9 +1,9 @@
-
+const { findAll, findOne, insertOne, updateOne, deleteOne } = require("./model");
 
 const getAll = async (req, res, next) => {
     try {
-        
-        res.status(200).json()
+        const albums = await findAll();
+        res.status(200).json(albums)
     } catch (error) {
         next(error);
     }
@@ -11,17 +11,9 @@ const getAll = async (req, res, next) => {
 
 const getOne = async (req, res, next) => {
     try {
-        
-        res.status(200).json();
-    } catch (error) {
-        next(error);
-    }
-};
-
-const getTracksByAlbumId = async (req, res, next) => {
-    try {
-
-        res.status(200).json()
+        const id = Number.parseInt(req.params.id)
+        const album = await findOne({id});
+        res.status(200).json(album);
     } catch (error) {
         next(error);
     }
@@ -29,8 +21,8 @@ const getTracksByAlbumId = async (req, res, next) => {
 
 const postAlbums = async (req, res, next) => {
     try {
-
-        res.status(201).json();
+        const album = await insertOne(req.body);
+        res.status(201).json(album);
     } catch (error) {
         next(error);
     }
@@ -38,7 +30,8 @@ const postAlbums = async (req, res, next) => {
 
 const updateAlbums = async (req, res, next) => {
     try {
-
+        const id = Number.parseInt(req.params.id);
+        await updateOne(req.body, {id});
         res.sendStatus(204)
     } catch (error) {
         next(error);
@@ -47,7 +40,8 @@ const updateAlbums = async (req, res, next) => {
 
 const deleteAlbums = async (req, res, next) => {
     try {
-
+        const id = Number.parseInt(req.params.id);
+        await deleteOne(id);
         res.sendStatus(204);
     } catch (error) {
         next(error);
@@ -57,7 +51,6 @@ const deleteAlbums = async (req, res, next) => {
 module.exports = {
     getAll,
     getOne,
-    getTracksByAlbumId,
     postAlbums,
     updateAlbums,
     deleteAlbums,

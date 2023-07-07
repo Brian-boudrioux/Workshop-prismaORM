@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model albums {
+  id      Int      @id @default(autoincrement())
+  title   String   @db.VarChar(255)
+  genre   String?  @db.VarChar(255)
+  picture String?  @db.VarChar(255)
+  artist  String?  @db.VarChar(255)
+  tracks  tracks[]
+}
+
+model tracks {
+  id          Int     @id @default(autoincrement())
+  title       String  @db.VarChar(255)
+  youtube_url String? @db.VarChar(255)
+  id_album    Int
+  albums      albums  @relation(fields: [id_album], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_albumsid")
+
+  @@index([id_album], map: "fk_albumsid")
+}
